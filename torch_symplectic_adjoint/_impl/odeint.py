@@ -7,12 +7,12 @@ from .integrators.misc import _check_inputs, _flat_to_shape
 
 from .integrators.rk38 import RK38Solver
 from .integrators.rk4 import RK4Solver
-from .integrators.midpoint import MidpointSolver
+from .integrators.midpoint import MidPointSolver
 from .integrators.euler import EulerSolver
 
 SOLVERS = {
     'euler': EulerSolver,
-    'midpoint': MidpointSolver,
+    'midpoint': MidPointSolver,
     'rk38': RK38Solver,
     'rk4': RK4Solver,
     'dopri8': Dopri8Solver,

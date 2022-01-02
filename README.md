@@ -34,17 +34,17 @@ This library extends the implementation of neural ODE, [torchdiffeq](https://git
 from torch_symplectic_adjoint import odeint
 odeint(func, y0, t)
 
-from torch_symplectic_adjoint import adjoint
-adjoint(func, y0, t)
+from torch_symplectic_adjoint import odeint_adjoint
+odeint_adjoint(func, y0, t)
 
-from torch_symplectic_adjoint import onecheckpoint
-onecheckpoint(func, y0, t)
+from torch_symplectic_adjoint import odeint_onecheckpoint
+odeint_onecheckpoint(func, y0, t)
 
-from torch_symplectic_adjoint import checkpoint
-checkpoint(func, y0, t)
+from torch_symplectic_adjoint import odeint_checkpoint
+odeint_checkpoint(func, y0, t)
 
-from torch_symplectic_adjoint import symplectic_adjoint
-symplectic_adjoint(func, y0, t)
+from torch_symplectic_adjoint import odeint_symplectic_adjoint
+odeint_symplectic_adjoint(func, y0, t)
 ```
 
 Options:
