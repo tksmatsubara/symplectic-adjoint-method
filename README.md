@@ -2,13 +2,13 @@
 
 A neural network model of a differential equation, namely, neural ODE, has enabled the learning of continuous-time dynamical systems and probabilistic distributions with high accuracy. The neural ODE uses the same network repeatedly during numerical integration. The memory consumption of the backpropagation algorithm is proportional to the number of uses *times* the network size. This is true even if a checkpointing scheme divides the computational graph into sub-graphs. Otherwise, the adjoint method obtains a gradient by a numerical integration backward in time. Although this method consumes memory only for a single network use, it requires high computational cost to suppress numerical errors. This study proposes the symplectic adjoint method, which is an adjoint method solved by a symplectic integrator. The symplectic adjoint method obtains the exact gradient (up to rounding error) with memory proportional to the number of uses *plus* the network size. The experimental results demonstrate that the symplectic adjoint method consumes much less memory than the naive backpropagation algorithm and checkpointing schemes, performs faster than the adjoint method, and is more robust to rounding errors.
 
-| Methods                         | Implementation       | Gradient calculation      | Exact gradient | Memory for checkpoints | Memory for backprop. | Computational Cost |
-| :------------------------------ | :------------------- | :------------------------ | :------------- | :--------------------- | -------------------- | ------------------ |
-| Neural ODE (Chen+, NeurIPS2018) | `adjoint`            | adjoint method            | no             | O(M)                   | O(L)                 | O((N+2N')sLM)      |
-| Neural ODE (Chen+, NeurIPS2018) | `odeint`             | backpropagation           | yes            | ---                    | O(NsLM)              | O(2NsLM)           |
-| baseline                        | `onecheckpoint`      | backpropagation           | yes            | O(M)                   | O(NsL)               | O(3NsLM)           |
-| ACA (Zhuang+, ICML2020)         | `checkpoint`         | backpropagation           | yes            | O(MN)                  | O(sL)                | O(3NsLM)           |
-| **proposed**                    | `symplectic_adjoint` | symplectic adjoint method | yes            | O(MN+s)                | O(L)                 | O(4NsLM)           |
+| Methods                         | Implementation              | Gradient calculation      | Exact gradient | Memory for checkpoints | Memory for backprop. | Computational Cost |
+| :------------------------------ | :-------------------------- | :------------------------ | :------------- | :--------------------- | -------------------- | ------------------ |
+| Neural ODE (Chen+, NeurIPS2018) | `odeint_adjoint`            | adjoint method            | no             | O(M)                   | O(L)                 | O((N+2N')sLM)      |
+| Neural ODE (Chen+, NeurIPS2018) | `odeint`                    | backpropagation           | yes            | ---                    | O(NsLM)              | O(2NsLM)           |
+| baseline                        | `odeint_onecheckpoint`      | backpropagation           | yes            | O(M)                   | O(NsL)               | O(3NsLM)           |
+| ACA (Zhuang+, ICML2020)         | `odeint_checkpoint`         | backpropagation           | yes            | O(MN)                  | O(sL)                | O(3NsLM)           |
+| **proposed**                    | `odeint_symplectic_adjoint` | symplectic adjoint method | yes            | O(MN+s)                | O(L)                 | O(4NsLM)           |
 
 - M: the number of stacked neural ODE components.
 - L: the number of layers in a neural network.
