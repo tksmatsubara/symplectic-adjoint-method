@@ -24,7 +24,9 @@ python setup.py install
 ## Requirements
 
 - Python v3.7.3
-- PyTorch v1.7.1
+- PyTorch v1.7.1 or newer
+
+This branch includes an update from the original repository and is expected to work with a new version. The results in the published papers were obtained using the main branch and PyTorch v1.7.1.
 
 ## Usage
 

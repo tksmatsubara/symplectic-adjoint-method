@@ -185,8 +185,6 @@ class Perturb(Enum):
 
 
 class _PerturbFunc(torch.nn.Module):
-    _inf = torch.tensor(math.inf)
-    _neginf = torch.tensor(-math.inf)
 
     def __init__(self, base_func):
         super(_PerturbFunc, self).__init__()
@@ -200,10 +198,10 @@ class _PerturbFunc(torch.nn.Module):
         t = t.to(y.dtype)
         if perturb is Perturb.NEXT:
             # Replace with next smallest representable value.
-            t = _nextafter(t, self._inf)
+            t = _nextafter(t, t + 1)
         elif perturb is Perturb.PREV:
             # Replace with prev largest representable value.
-            t = _nextafter(t, self._neginf)
+            t = _nextafter(t, t - 1)
         else:
             # Do nothing.
             pass
