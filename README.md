@@ -26,6 +26,8 @@ python setup.py install
 - Python v3.7.3
 - PyTorch v1.7.1
 
+For a newer version of PyTorch, see the [beta branch](https://github.com/tksmatsubara/symplectic-adjoint-method/tree/beta).
+
 ## Usage
 
 This library extends the implementation of neural ODE, [torchdiffeq](https://github.com/rtqichen/torchdiffeq) 0.1.1. Please refer to the repository for basic usage. Each of the following commands solves an initial value problem. The difference lies in the algorithm for obtaining the gradient.
